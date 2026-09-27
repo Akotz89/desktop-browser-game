@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modular WebGPU 3D Test</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #0c1119; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+    #hud { position: fixed; top: 12px; left: 12px; max-width: min(460px, calc(100vw - 24px)); padding: 12px 14px; color: #edf4ff; background: rgba(7, 12, 19, 0.82); border: 1px solid rgba(180, 205, 240, 0.2); border-radius: 8px; line-height: 1.45; }
+    #title { font-weight: 700; margin-bottom: 4px; }
+    #controls { color: #bfd0e7; font-size: 13px; margin-bottom: 8px; }
+    #status { font-family: ui-monospace, Consolas, monospace; font-size: 12px; overflow-wrap: anywhere; }
+    #status.error { color: #ff9b9b; }
+  </style>
+  <script defer src="./src/00-namespace.js"></script>
+  <script defer src="./src/01-math.js"></script>
+  <script defer src="./src/02-camera.js"></script>
+  <script defer src="./src/03-input.js"></script>
+  <script defer src="./src/04-world.js"></script>
+  <script defer src="./src/05-shaders.js"></script>
+  <script defer src="./src/06-renderer.js"></script>
+  <script defer src="./src/07-main.js"></script>
+</head>
+<body>
+  <canvas id="worldCanvas" aria-label="WebGPU 3D test scene"></canvas>
+  <section id="hud">
+    <div id="title">Modular WebGPU 3D test</div>
+    <div id="controls">WASD move · Arrow keys look · Q/E move vertically</div>
+    <div id="status">Loading local JavaScript files…</div>
+  </section>
+</body>
+</html>

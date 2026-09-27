@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ES Module File Test</title>
+  <style>
+    body { max-width: 760px; margin: 32px auto; padding: 0 16px; color: #eaf1fb; background: #101722; font: 16px/1.55 system-ui, sans-serif; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 12px; border-radius: 6px; background: #05090f; }
+  </style>
+</head>
+<body>
+  <h1>ES module local-file check</h1>
+  <p>This page tries to import one neighboring JavaScript file from this same folder.</p>
+  <p>Current URL: <span id="url"></span></p>
+  <pre id="result">Checking native module import…</pre>
+  <script type="module">
+    const result = document.getElementById("result");
+    document.getElementById("url").textContent = location.href;
+    try {
+      const probe = await import("./src/module-probe.js");
+      result.textContent = "PASS: " + probe.message();
+    } catch (error) {
+      result.textContent = "IMPORT FAILED: " + error.name + ": " + error.message +
+        "\nThe main test page uses separate classic scripts and can still work from this folder.";
+    }
+  </script>
+</body>
+</html>
