@@ -15,6 +15,28 @@
     #status { font-family: ui-monospace, Consolas, monospace; font-size: 12px; overflow-wrap: anywhere; }
     #status.error { color: #ff9b9b; }
   </style>
+  <script>
+    (function () {
+      let loadError = "";
+
+      function showLoadError() {
+        const status = document.getElementById("status");
+        if (!status || !loadError) return;
+        status.textContent = loadError;
+        status.className = "error";
+      }
+
+      window.addEventListener("error", function (event) {
+        const target = event.target;
+        if (!target || target.tagName !== "SCRIPT") return;
+        loadError = "Could not load local script: " + target.getAttribute("src") +
+          " · Keep the src folder beside index.html.";
+        showLoadError();
+      }, true);
+
+      document.addEventListener("DOMContentLoaded", showLoadError, { once: true });
+    })();
+  </script>
   <script defer src="./src/00-namespace.js"></script>
   <script defer src="./src/01-math.js"></script>
   <script defer src="./src/02-camera.js"></script>
