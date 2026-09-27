@@ -1,37 +1,46 @@
 # Modular WebGPU 3D prototype
 
-This is a technical test scene, not the chosen game. It checks WebGPU rendering, basic camera movement, and whether separate JavaScript files can load from a desktop folder in Chrome.
+This is a technical test scene, not the chosen game. It checks WebGPU rendering, basic camera movement, and separate JavaScript files from a desktop folder in Chrome.
 
-## Open the test
+## Copy the test by hand (no ZIP required)
 
-1. Download the repository as a ZIP and extract it.
-2. Keep the prototype folder together with its `src` subfolder. The required layout is:
-   ```
-   desktop-webgpu-world/
-     index.html
-     es-modules-check.html
-     src/
-       00-namespace.js
-       01-math.js
-       02-camera.js
-       03-input.js
-       04-world.js
-       05-shaders.js
-       06-renderer.js
-       07-main.js
-   ```
-3. Open `desktop-webgpu-world/index.html` from that extracted folder.
-4. Use WASD to move, the arrow keys to look, and Q/E to move vertically.
-5. Open `es-modules-check.html` from the same folder to test native JavaScript module imports.
+Create this folder layout in File Explorer. The `src` folder must be directly inside `BrowserGame`, beside `index.html`:
 
-If the status panel reports that it could not load a local script, confirm the `src` folder is beside `index.html` and contains all eight JavaScript files above.
+```
+Desktop/
+  BrowserGame/
+    index.html
+    src/
+      00-namespace.js
+      01-math.js
+      02-camera.js
+      03-input.js
+      04-world.js
+      05-shaders.js
+      06-renderer.js
+      07-main.js
+```
 
-## What the results mean
+Open each link below in GitHub, open the file's **Raw** view, copy its contents, and paste into a new file at the matching path above:
 
-The main page uses multiple classic JavaScript files, each in its own source file and loaded in order. This tests a modular layout that does not use import/export or fetch. The WGSL shader is stored as a JavaScript string, so it is also loaded from a local script file rather than fetched.
+- [index.html](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/index.html)
+- [00-namespace.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/00-namespace.js)
+- [01-math.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/01-math.js)
+- [02-camera.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/02-camera.js)
+- [03-input.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/03-input.js)
+- [04-world.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/04-world.js)
+- [05-shaders.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/05-shaders.js)
+- [06-renderer.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/06-renderer.js)
+- [07-main.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/07-main.js)
 
-The separate ES-module page reports whether import() works from this file URL in this Chrome setup. If it fails while the main scene works, we can keep the code modular with ordered script files and the shared ModularWorld namespace. If it passes, we can decide whether native modules are worth using for the full game.
+When saving with Notepad, choose **Save as type: All Files** so Windows does not append `.txt` to `.html` or `.js` filenames.
 
-A successful scene shows a dark floor grid and a colored cube. The status panel reports the secure-context flag and WebGPU startup errors, but does not block rendering based on that flag.
+Then open `Desktop\\BrowserGame\\index.html`. Use WASD to move, the arrow keys to look, and Q/E to move vertically. If the status says it could not load a script, check that the named `.js` file is inside `BrowserGame\\src` and is not saved with an extra `.txt` extension.
 
-This prototype uses no third-party libraries, external services, fetched files, WebAssembly, or build step. The final game concept and world design remain open.
+The ES-module check is optional and is not needed to run the scene. Its page and probe file are [es-modules-check.html](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/es-modules-check.html) and [module-probe.js](https://github.com/Akotz89/desktop-browser-game/blob/main/prototype/desktop-webgpu-world/src/module-probe.js).
+
+## What this tests
+
+The main page loads classic JavaScript files in order, without import/export or fetch. The WGSL shader is stored as a string in a JavaScript file. This keeps the code split into clear parts while avoiding a server, third-party library, WebAssembly, and a build step.
+
+A successful scene shows a dark floor grid and a colored cube. Use the ES-module check separately to learn whether native JavaScript module imports work from this file URL in this Chrome setup.
