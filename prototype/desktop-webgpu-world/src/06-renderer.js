@@ -1,4 +1,4 @@
-function (app, global) {
+(function (app, global) {
   function createWebGLFallback(canvas, vertexData, reason) {
     const gl = canvas.getContext("webgl2", { alpha: false, antialias: true });
     if (!gl) {
@@ -259,4 +259,4 @@ function (app, global) {
   }
 
   app.renderer = { createRenderer };
-})(window.ModularWorld, window)
+})(window.ModularWorld, window);
