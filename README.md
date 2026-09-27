@@ -4,7 +4,9 @@ A small browser game launched from a desktop folder.
 
 ## Planning status
 
-The game concept is still undecided. The current technical preference is plain HTML, CSS, and JavaScript, using Canvas 2D if it fits the chosen game. WebAssembly and compilation are out of scope. The game should avoid external libraries, CDNs, and runtime network requirements where practical so it can stay easy to launch in a browser.
+The game concept is still undecided. WebGPU is the selected rendering direction, using browser APIs with JavaScript and WGSL shader source. WebAssembly and a developer-run compile toolchain are out of scope; the browser handles shader compilation at runtime.
+
+The launch method remains to be validated: Chrome requires a secure context for WebGPU, so opening the HTML file directly with `file://` will not be enough. The project should avoid external libraries, CDNs, and runtime network dependencies where practical.
 
 ## License
 
