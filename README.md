@@ -6,7 +6,9 @@ A small browser game launched from a desktop folder.
 
 The game concept is still undecided. WebGPU is the selected rendering direction, using browser APIs with JavaScript and WGSL shader source. WebAssembly and a developer-run compile toolchain are out of scope; the browser handles shader compilation at runtime.
 
-The launch method remains to be validated: Chrome requires a secure context for WebGPU, so opening the HTML file directly with `file://` will not be enough. The project should avoid external libraries, CDNs, and runtime network dependencies where practical.
+Chrome requires a secure context for WebGPU, so opening the HTML file directly with `file://` is not expected to work. Before game implementation, validate an approved launch method with a small, from-scratch WebGPU “Hello Triangle” page. The test should embed its WGSL shader and use no external libraries, then check both `file://` and an approved `localhost` server in the target Chrome environment.
+
+The project should avoid external libraries, CDNs, and runtime network dependencies where practical.
 
 ## License
 
