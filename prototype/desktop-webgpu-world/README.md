@@ -41,6 +41,6 @@ The ES-module check is optional and is not needed to run the scene. Its page and
 
 ## What this tests
 
-The main page loads classic JavaScript files in order, without import/export or fetch. The WGSL shader is stored as a string in a JavaScript file. This keeps the code split into clear parts while avoiding a server, third-party library, WebAssembly, and a build step.
+The main page loads classic JavaScript files in order, without import/export or fetch. It uses WebGPU when Chrome provides an adapter. If WebGPU is unavailable, it tries a built-in WebGL2 fallback and reports the active renderer in the status line. This keeps the code split into clear parts while avoiding third-party libraries, WebAssembly, and a build step.
 
 A successful scene shows a dark floor grid and a colored cube. Use the ES-module check separately to learn whether native JavaScript module imports work from this file URL in this Chrome setup.
