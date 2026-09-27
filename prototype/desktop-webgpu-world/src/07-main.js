@@ -9,7 +9,10 @@
     const vertices = app.world.createVertices();
     const renderer = await app.renderer.createRenderer(canvas, vertices);
 
-    app.setStatus("WebGPU ready · WASD move · arrows look · Q/E vertical · secure-context flag: " + secure);
+    const backendStatus = renderer.fallbackReason
+      ? renderer.backend + " ready · WebGPU unavailable: " + renderer.fallbackReason
+      : renderer.backend + " ready";
+    app.setStatus(backendStatus + " · WASD move · arrows look · Q/E vertical · secure-context flag: " + secure);
     let previousTime = 0;
 
     function frame(now) {
